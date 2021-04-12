@@ -11,6 +11,8 @@ TagManager:
   - 100score
   - ammobox
   - shield
+  - enemyhead
+  - enemybody
   layers:
   - Default
   - TransparentFX

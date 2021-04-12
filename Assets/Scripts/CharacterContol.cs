@@ -35,6 +35,7 @@ public class CharacterContol : MonoBehaviour
     public GameObject pistol;
     public GameObject rifle;
     public GameObject shotgun;
+    public GameObject snipe;
     public GameObject hand;
     public Transform handposition;
     [SerializeField]
@@ -87,6 +88,10 @@ public class CharacterContol : MonoBehaviour
                 {
                     WeaponSwitch("rifle");
                 }
+                else if (Input.GetKeyDown(KeyCode.Alpha5))
+                {
+                    WeaponSwitch("snipe");
+                }
 
 
             if (controller.isGrounded)
@@ -121,33 +126,31 @@ public class CharacterContol : MonoBehaviour
     }
     public void WeaponSwitch(string weaponame)
     {
-        if(weaponame == "fist")
+        //hand.SetActive(false);
+        shotgun.SetActive(false);
+        rifle.SetActive(false);
+        pistol.SetActive(false);
+        snipe.SetActive(false);
+        
+        if (weaponame == "fist")
         {
             hand.SetActive(true);
-            shotgun.SetActive(false);
-            rifle.SetActive(false);
-            pistol.SetActive(false);
         }
         else if(weaponame == "pistol")
         {
-            hand.SetActive(true);
-            shotgun.SetActive(false);
-            rifle.SetActive(false);
             pistol.SetActive(true);
         }
         else if(weaponame == "rifle")
         {
-            hand.SetActive(false);
-            shotgun.SetActive(false);
             rifle.SetActive(true);
-            pistol.SetActive(false);
         }
         else if(weaponame == "shotgun")
         {
-            hand.SetActive(false);
             shotgun.SetActive(true);
-            rifle.SetActive(false);
-            pistol.SetActive(false);
+        }
+        else if(weaponame == "snipe")
+        {
+            snipe.SetActive(true);
         }
     }
     IEnumerator Reload()
