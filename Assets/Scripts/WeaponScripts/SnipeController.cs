@@ -27,7 +27,7 @@ public class SnipeController : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
-        showammo.text = ammo + "/7";
+        showammo.text = ammo + "/10";
     }
     private void Update()
     {
@@ -38,7 +38,15 @@ public class SnipeController : MonoBehaviour
             {
                 if (ammo > 0 && !reload)
                 {
-                    
+                    Ray ray = new Ray(spawnposition.position ,(spawnposition.position - shotposition.position).normalized);
+                    RaycastHit raycast;
+                    if (Physics.Raycast(ray, out raycast, 1000))
+                    {
+                        if (raycast.transform.CompareTag("enemyhead"))
+                        {
+
+                        }
+                    }
                     animator.Play("Shot");
                     ammo--;
                 }
@@ -47,7 +55,7 @@ public class SnipeController : MonoBehaviour
                     animator.Play("Empty");
                 }
             }
-            showammo.text = ammo + "/7";
+            showammo.text = ammo + "/10";
             if (Input.GetKeyDown(KeyCode.R))
             {
                 StartCoroutine("Reload");
@@ -60,9 +68,9 @@ public class SnipeController : MonoBehaviour
         animator.Play("Reloading");
         lefthand.GetComponent<Animator>().Play("ReloadPistol");
         yield return new WaitForSeconds(3);
-        Player.GetComponent<CharacterContol>().AddAmmo(-7+ammo);
-        ammo = 7;
-        showammo.text = ammo + "/7";
+        Player.GetComponent<CharacterContol>().AddAmmo(-10+ammo);
+        ammo = 10;
+        showammo.text = ammo + "/10";
         reload = false;
     }
 }
